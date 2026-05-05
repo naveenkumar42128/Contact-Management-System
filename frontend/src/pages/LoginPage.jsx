@@ -37,6 +37,7 @@ export default function LoginPage() {
 
   return (
     <div className="auth-page">
+      <div className="auth-background-text">NAVEEN</div>
       <div className="auth-card card">
         <h1>📇 ContactManager</h1>
         <p className="auth-subtitle">Sign in to your account</p>
