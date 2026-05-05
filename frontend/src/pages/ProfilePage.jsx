@@ -1,28 +1,51 @@
-import { useAuth } from '../context/AuthContext'
-import { FiUser, FiMail, FiShield, FiCalendar, FiActivity } from 'react-icons/fi'
-import './ProfilePage.css'
+import { useAuth } from "../context/AuthContext";
+import {
+  FiUser,
+  FiMail,
+  FiShield,
+  FiCalendar,
+  FiActivity,
+} from "react-icons/fi";
+import "./ProfilePage.css";
 
 export default function ProfilePage() {
-  const { user } = useAuth()
-  const joinDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  const { user } = useAuth();
+  const joinDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  if (!user) {
+    return (
+      <div className="page-container">
+        <div className="profile-wrapper">
+          <div className="loading">
+            <p>Loading user profile...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page-container">
       <div className="profile-wrapper">
-
         {/* Profile Header Card */}
         <div className="profile-header-card card">
           <div className="profile-avatar-wrapper">
-            <div className="profile-avatar">{user?.name?.[0]?.toUpperCase()}</div>
+            <div className="profile-avatar">
+              {user.name ? user.name[0].toUpperCase() : "?"}
+            </div>
             <div className="profile-status-badge">
               <span className="status-dot"></span> Active
             </div>
           </div>
           <div className="profile-header-info">
-            <h2>{user?.name}</h2>
-            <p className="profile-email">{user?.email}</p>
+            <h2>{user.name || "User"}</h2>
+            <p className="profile-email">{user.email || "No email"}</p>
             <div className="profile-badges">
-              <span className="profile-role-badge">{user?.role}</span>
+              <span className="profile-role-badge">{user.role || "USER"}</span>
               <span className="profile-active-badge">
                 <span className="status-dot"></span> Online Now
               </span>
@@ -32,33 +55,42 @@ export default function ProfilePage() {
 
         {/* Info Cards Grid */}
         <div className="profile-grid">
-
           <div className="profile-info-card card">
             <h3>Account Information</h3>
             <div className="profile-details">
               <div className="profile-detail-item">
-                <div className="detail-icon"><FiUser /></div>
+                <div className="detail-icon">
+                  <FiUser />
+                </div>
                 <div>
                   <p className="detail-label">Full Name</p>
-                  <p className="detail-value">{user?.name}</p>
+                  <p className="detail-value">{user.name || "Not available"}</p>
                 </div>
               </div>
               <div className="profile-detail-item">
-                <div className="detail-icon"><FiMail /></div>
+                <div className="detail-icon">
+                  <FiMail />
+                </div>
                 <div>
                   <p className="detail-label">Email Address</p>
-                  <p className="detail-value">{user?.email}</p>
+                  <p className="detail-value">
+                    {user.email || "Not available"}
+                  </p>
                 </div>
               </div>
               <div className="profile-detail-item">
-                <div className="detail-icon"><FiShield /></div>
+                <div className="detail-icon">
+                  <FiShield />
+                </div>
                 <div>
                   <p className="detail-label">Role</p>
-                  <p className="detail-value">{user?.role}</p>
+                  <p className="detail-value">{user.role || "USER"}</p>
                 </div>
               </div>
               <div className="profile-detail-item">
-                <div className="detail-icon"><FiCalendar /></div>
+                <div className="detail-icon">
+                  <FiCalendar />
+                </div>
                 <div>
                   <p className="detail-label">Member Since</p>
                   <p className="detail-value">{joinDate}</p>
@@ -82,7 +114,7 @@ export default function ProfilePage() {
                   <FiShield color="#4f46e5" />
                   <span>Role</span>
                 </div>
-                <span className="status-pill role">{user?.role}</span>
+                <span className="status-pill role">{user.role || "USER"}</span>
               </div>
               <div className="status-item">
                 <div className="status-item-left">
@@ -115,5 +147,5 @@ export default function ProfilePage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
