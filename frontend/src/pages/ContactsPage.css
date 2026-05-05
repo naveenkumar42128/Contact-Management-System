@@ -1,0 +1,48 @@
+.contacts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.contacts-header h2 { font-size: 1.4rem; }
+
+.contacts-actions { display: flex; gap: 0.6rem; }
+
+.search-bar {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.search-bar input { padding-left: 2.4rem; }
+
+.search-icon {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.contacts-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.loading, .empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
